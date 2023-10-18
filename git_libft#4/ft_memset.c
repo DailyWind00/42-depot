@@ -1,45 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 09:35:02 by mgallais          #+#    #+#             */
-/*   Updated: 2023/10/18 15:29:47 by mgallais         ###   ########.fr       */
+/*   Created: 2023/10/16 13:38:14 by mgallais          #+#    #+#             */
+/*   Updated: 2023/10/18 12:28:36 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t length)
+void	*ft_memset(void *vptr, int value, size_t count)
 {
-	unsigned char	*cdest;
-	unsigned char	*csrc;
-	size_t			i;
+	unsigned char	*cptr;
 
-	i = 0;
-	cdest = (unsigned char *)dest;
-	csrc = (unsigned char *)src;
-	if (dest == 0 || src == 0 || length <= 0)
-		return (dest);
-	while (i != length)
-	{
-		cdest[i] = csrc[i];
-		i++;
-	}
-	return (dest);
+	cptr = vptr;
+	if (vptr == 0 || count == 0)
+		return (vptr);
+	while (count--)
+		*cptr++ = (unsigned char)value;
+	return (vptr);
 }
 //debug
 //#include <string.h>
 //#include <stdio.h>
 //int	main(void)
 //{
-//	char	sptr[10] = "oooooooooo";
-//	char	dptr[10] = "xxxxxxxxxx";
-//	ft_memcpy(dptr, sptr, 7);
-//	printf("%s\n", dptr);
-//	memcpy(dptr, sptr, 7);
-//	printf("%s\n", dptr);
+//	char	vptr[10] = "jiegojkjhh";
+//	ft_memset(vptr, "_", 1);
+//	printf("%s\n", vptr);
+//	memset(vptr, "_", 1);
+//	printf("%s\n", vptr);
 //	return (0);
 //}
