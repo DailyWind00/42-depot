@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 	buf = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash = ft_read_fd(fd, buf);
+	stash = ft_read_fd(fd, stash);
 	if (!stash)
 		return (NULL);
 	buf = ft_extract_line(stash);
