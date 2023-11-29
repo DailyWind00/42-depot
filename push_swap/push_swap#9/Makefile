@@ -1,42 +1,31 @@
-CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
-NAME	= push_swap
+NAME = push_swap
 
-SRC_PATH = src/
-OBJ_PATH = obj/
-SRC		= main.c \
-		input_check.c input_check_utils.c \
-		initialization.c \
-		stack.c \
-		swap.c \
-		push.c \
-		rotate.c \
-		reverse_rotate.c \
-		sort_tiny.c sort.c \
-		position.c cost.c do_move.c \
-		utils.c
-SRCS	= $(addprefix $(SRC_PATH), $(SRC))
-OBJ		= $(SRC:.c=.o)
-OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
-INCS	= -I ./includes/
+CFLAGS = -Wall -Wextra -Werror -Iinclude -g
+LDFLAGS = -Llib -lftprintf
 
-all: $(OBJ_PATH) $(NAME) 
+SRC = $(wildcard *.c) $(wildcard */*.c)
+OBJ = $(SRC:.c=.o)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
+%.o:		%.c
+			$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_PATH):
-	mkdir $(OBJ_PATH)
+$(NAME):	$(OBJ)
+			$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+all:		$(NAME)
 
 clean:
-	rm -rf $(OBJ_PATH)
+			$(RM) -f $(OBJ)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:		clean
+			$(RM) -f $(NAME)
 
-re: fclean all
+re:			fclean all
+
+test:
+			make re
+			make clean
+			clear
+			echo "\033[1;92mDONE !"
 
 .PHONY: all clean fclean re
