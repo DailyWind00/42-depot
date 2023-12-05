@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args_2.c                                     :+:      :+:    :+:   */
+/*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 10:31:48 by mgallais          #+#    #+#             */
-/*   Updated: 2023/12/01 11:31:49 by mgallais         ###   ########.fr       */
+/*   Created: 2023/11/30 10:34:18 by mgallais          #+#    #+#             */
+/*   Updated: 2023/11/30 10:34:19 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_wspace(char c)
+int	is_sorted(t_list *stack_a)
 {
-	if (c == 32 || c == 9 || c == 10
-		|| c == 11 || c == 12 || c == 13)
-		return (1);
-	return (0);
-}
+	int	last;
 
-void	check_args_str(char **argv)
-{
-	ssize_t	i;
-
-	i = 0;
-	if (!argv[1][1])
-		exit(0);
-	while (argv[1][i])
+	last = ft_atoi(stack_a->content);
+	stack_a = stack_a->next;
+	while (stack_a)
 	{
-		if (!is_wspace(argv[1][i]))
-			return ;
-		i++;
+		if (last < ft_atoi(stack_a->content))
+			return (0);
+		last = ft_atoi(stack_a->content);
+		stack_a = stack_a->next;
 	}
-	exit(0);
+	return (1);
 }

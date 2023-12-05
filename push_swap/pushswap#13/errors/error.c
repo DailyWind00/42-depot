@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args_2.c                                     :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 10:31:48 by mgallais          #+#    #+#             */
-/*   Updated: 2023/12/01 11:31:49 by mgallais         ###   ########.fr       */
+/*   Created: 2023/11/30 10:32:21 by mgallais          #+#    #+#             */
+/*   Updated: 2023/12/05 15:29:57 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_wspace(char c)
+void	_error(t_list **stack)
 {
-	if (c == 32 || c == 9 || c == 10
-		|| c == 11 || c == 12 || c == 13)
-		return (1);
-	return (0);
+	free_stack(stack);
+	exit(0);
 }
 
-void	check_args_str(char **argv)
+void	error(t_list **stack)
 {
-	ssize_t	i;
+	free_stack(stack);
+	ft_printf("Error\n");
+	exit(0);
+}
 
-	i = 0;
-	if (!argv[1][1])
-		exit(0);
-	while (argv[1][i])
-	{
-		if (!is_wspace(argv[1][i]))
-			return ;
-		i++;
-	}
+void	split_error(char **split_result)
+{
+	ft_free_split(split_result);
+	ft_printf("Error\n");
 	exit(0);
 }

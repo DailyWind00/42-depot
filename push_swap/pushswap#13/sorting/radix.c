@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args_2.c                                     :+:      :+:    :+:   */
+/*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 10:31:48 by mgallais          #+#    #+#             */
-/*   Updated: 2023/12/01 11:31:49 by mgallais         ###   ########.fr       */
+/*   Created: 2023/11/30 10:34:35 by mgallais          #+#    #+#             */
+/*   Updated: 2023/11/30 10:34:36 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_wspace(char c)
+void	radix(int *i, t_stacks_args *s_args, int j, int *k)
 {
-	if (c == 32 || c == 9 || c == 10
-		|| c == 11 || c == 12 || c == 13)
-		return (1);
-	return (0);
-}
-
-void	check_args_str(char **argv)
-{
-	ssize_t	i;
-
-	i = 0;
-	if (!argv[1][1])
-		exit(0);
-	while (argv[1][i])
+	while ((*i)--)
 	{
-		if (!is_wspace(argv[1][i]))
-			return ;
-		i++;
+		if (ft_lstlast(*(s_args->stack_a))->content != NULL)
+		{
+			if ((((ft_atoi((ft_lstlast(*(s_args->stack_a)))->content)) >> j)
+					& 0x1) == 0)
+			{
+				pb(s_args->stack_a, s_args->stack_b);
+				(*k)++;
+			}
+			else
+				ra(s_args->stack_a, 1);
+		}
 	}
-	exit(0);
 }

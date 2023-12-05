@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   indexing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgallais <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 10:34:08 by mgallais          #+#    #+#             */
-/*   Updated: 2023/12/01 11:41:08 by mgallais         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:53:06 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	index_stack(t_list **stack_a)
 	iv.i = 0;
 	iv.current = *stack_a;
 	if (iv.current->next == NULL)
-		exit(0);
+		_error(stack_a);
 	while (iv.current)
 	{
 		iv.current->index = 0;
@@ -59,3 +59,8 @@ void	index_stack(t_list **stack_a)
 	_iv = &iv;
 	index_stack2(&_iv, stack_a);
 }
+/*
+void special_index_stack(t_list **stack_a, int argc)
+{
+	if (argc == 4)
+*/
