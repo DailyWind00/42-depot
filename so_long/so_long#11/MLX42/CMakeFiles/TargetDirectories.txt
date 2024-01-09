@@ -1,0 +1,7 @@
+/home/mgallais/so_long/MLX42/CMakeFiles/install/strip.dir
+/home/mgallais/so_long/MLX42/CMakeFiles/install.dir
+/home/mgallais/so_long/MLX42/CMakeFiles/list_install_components.dir
+/home/mgallais/so_long/MLX42/CMakeFiles/rebuild_cache.dir
+/home/mgallais/so_long/MLX42/CMakeFiles/edit_cache.dir
+/home/mgallais/so_long/MLX42/CMakeFiles/install/local.dir
+/home/mgallais/so_long/MLX42/CMakeFiles/mlx42.dir
