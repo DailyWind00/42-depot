@@ -28,7 +28,21 @@ class Contact
 	public :
 		Contact();
 		~Contact();
+		void	addEntry();
 
+		/* Getters and Setters */
+		std::string	getFName();
+		std::string	getLName();
+		std::string	getNName();
+		std::string	getPhoneNumber();
+		std::string	getSecret();
+		bool		getIsEmpty();
+		void	setFName(std::string fName);
+		void	setLName(std::string lName);
+		void	setNName(std::string nName);
+		void	setPhoneNumber(std::string phoneNumber);
+		void	setSecret(std::string secret);
+		void	setIsEmpty(bool empty);
 };
 
 #endif

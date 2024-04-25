@@ -20,6 +20,7 @@ class PhoneBook
 {
 	private :
 		int		contactNumber;
+		int		oldestContact;
 		Contact	contacts[8];
 	public :
 		PhoneBook();

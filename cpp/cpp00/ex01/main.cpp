@@ -17,14 +17,18 @@ int	main()
 	PhoneBook	PB = PhoneBook();
 	std::string	input = "";
 	
+	std::cout << "Welcome to the PhoneBook !" << std::endl;
+	std::cout << "> You can ADD, SEARCH or EXIT" << std::endl;
     while(42) {
 		std::cin >> input;
+
 		if (input == "ADD")
-			;
+			PB.add();
 		else if (input == "SEARCH")
-			;
+			PB.search();
 		else if (input == "EXIT")
 			break ;
 	}
+	std::cout << "Goodbye!" << std::endl;
 	return 0;
 }

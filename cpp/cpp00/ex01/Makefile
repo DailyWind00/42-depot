@@ -1,7 +1,11 @@
 ##------------------------------------##
-NAME = megaphone
+NAME = 	phonebook
 
-SRCS = megaphone.cpp
+HEADERS =   PhoneBook.hpp \
+			Contact.hpp #
+SRCS = 	PhoneBook.cpp \
+		Contact.cpp \
+		main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
