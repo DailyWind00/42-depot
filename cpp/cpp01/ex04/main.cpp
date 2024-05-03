@@ -6,12 +6,15 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 09:11:41 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/03 10:32:10 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:14:54 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
+
+#define EXIT_FAILURE 1
+#define EXIT_SUCCESS 0
 
 int	main(int argc, char **argv)
 {
@@ -26,7 +29,7 @@ int	main(int argc, char **argv)
 	infile.open(argv[1], std::ios::in);
 	if (!infile.is_open())
 	{
-		std::cout << "File doesn't exist" << std::endl;
+		std::cout << "Error while opening the file" << std::endl;
 		return EXIT_FAILURE;
 	}
 	
@@ -35,7 +38,7 @@ int	main(int argc, char **argv)
 	outfile_name.append(".replace");
 
 	std::fstream	outfile;
-	outfile.open(outfile_name, std::ios::out);
+	outfile.open(outfile_name.c_str(), std::ios::out);
 	if (!outfile.is_open())
 	{
 		std::cout << "Error while creating the file" << std::endl;
