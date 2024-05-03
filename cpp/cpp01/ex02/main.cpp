@@ -19,7 +19,7 @@ int	main()
 	std::string& strRef = str;
 
 	std::cout << "> Adresses : " << std::endl;
-	std::cout << "Pointer: " << strPtr << std::endl;
+	std::cout << "Pointer: " << strPtr << " (value stocked in the ptr)" << std::endl;
 	std::cout << "Reference: " << &strRef << std::endl;
 
 	std::cout << "> Values : " << std::endl;
