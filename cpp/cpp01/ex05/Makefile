@@ -1,6 +1,7 @@
 ##------------------------------------##
-NAME = 	Sed_is_for_losers
+NAME = 	Harl_2.0
 
+HEADERS =	Sed.hpp #
 SRCS =	main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
