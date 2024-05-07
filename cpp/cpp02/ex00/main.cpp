@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 15:38:31 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/07 11:45:43 by mgallais         ###   ########.fr       */
+/*   Created: 2024/05/07 13:38:18 by mgallais          #+#    #+#             */
+/*   Updated: 2024/05/07 15:02:17 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP
+#include "Fixed.hpp"
 
-# include <iostream>
+#define BRed "\033[1;31m" 
+#define Color_Off "\033[0m"
 
-class Harl
+int main( void )
 {
-	private :
-		void	debug( void );
-		void	info( void );
-		void	warning( void );
-		void	error( void );
+	std::cout << BRed << "[NOTICE] See subject to compare results\n\n" << Color_Off;
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
 
-	public :
-		Harl();
-		~Harl();
-		void complain( std::string level );
-};
+	c = b;
 
-#endif
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	
+	return 0;
+}

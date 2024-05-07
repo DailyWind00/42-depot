@@ -1,5 +1,5 @@
 ##------------------------------------##
-NAME = 	Harl_2.0
+NAME = 	harlfilter
 
 HEADERS =	Harl.hpp #
 SRCS =	Harl.cpp \

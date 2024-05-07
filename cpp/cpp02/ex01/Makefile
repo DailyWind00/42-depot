@@ -1,8 +1,8 @@
 ##------------------------------------##
-NAME = 	Harl_2.0
+NAME = 	myFirstCannon
 
-HEADERS =	Harl.hpp #
-SRCS =	Harl.cpp \
+HEADERS =	Fixed.hpp #
+SRCS =	Fixed.cpp \
 		main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
