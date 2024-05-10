@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:37:42 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/07 15:30:42 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:40:16 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class	Fixed{
 		Fixed & operator=( const Fixed &fixed );
 		~Fixed();
 		
-		/* Getters and Setters */
+		// Getters and Setters :
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
 };

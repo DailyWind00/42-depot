@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:38:18 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/07 16:24:45 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:54:40 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #define Color_Off "\033[0m"
 
 int main( void ) {
+	std::cout << BRed << "[NOTICE] See subject to compare results\n\n" << Color_Off;
+
 	Fixed a;
 	Fixed const b( 10 );
 	Fixed const c( 42.42f );

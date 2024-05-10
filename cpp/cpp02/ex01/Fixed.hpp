@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:37:42 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/07 16:25:58 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:40:03 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ class	Fixed{
 		Fixed & operator=( const Fixed &fixed );
 		~Fixed();
 		
-		// Utility function
-		Fixed( int toRawBits );
-		Fixed( float toRawBits );
+		// Specifics Constructors :
+		Fixed( int const toRawBits );
+		Fixed( float const toRawBits );
+ 
+		// Utility Function :
 		int		toInt( void ) const ;
 		float	toFloat( void ) const ;
 		
-		/* Getters and Setters */
+		// Getters and Setters :
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
 };
