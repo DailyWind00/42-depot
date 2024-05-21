@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 08:58:07 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/16 11:42:04 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/21 09:32:09 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # include <iostream>
 
 class ClapTrap{
-	private :
+	protected :
 		std::string 	Name;
 		unsigned int	Hp;
 		unsigned int	Ep;
 		unsigned int	Ad;
+		std::string		Type;
 		bool			Dead;
 	public :
 		// Canonical Form :

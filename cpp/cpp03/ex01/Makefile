@@ -1,8 +1,10 @@
 ##------------------------------------##
-NAME = 	ClapTrap
+NAME = 	ScavTrap
 
-HEADERS =	ClapTrap.hpp #
+HEADERS =	ClapTrap.hpp \
+			ScavTrap.hpp #
 SRCS =	ClapTrap.cpp \
+		ScavTrap.cpp \
 		main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 

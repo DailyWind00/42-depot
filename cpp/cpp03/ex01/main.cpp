@@ -6,11 +6,12 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:38:18 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/16 11:58:36 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:00:51 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 static void    fight(ClapTrap *Alpha, ClapTrap *Beta)
 {
@@ -21,33 +22,44 @@ static void    fight(ClapTrap *Alpha, ClapTrap *Beta)
 int main() {
     ClapTrap    Bob = ClapTrap("Bob");
     ClapTrap    Rober = ClapTrap();
+    ScavTrap    Michelle = ScavTrap("Michel");
+    ScavTrap    Jacky = ScavTrap();
 
     // Constructors values :
     Bob.status();
     Rober.status();
+    Michelle.status();
+    Jacky.status();
 
     // Modify values for tests :
-    Bob.setAd(1);
-    Rober.beRepaired(2);
-    
-    Bob.status();
-    Rober.status();
+    Michelle.beRepaired(20);
+    Jacky.takeDamage(5);
+
+    Michelle.status();
+    Jacky.status();
+
+    Michelle.guardGate();
+    Jacky.guardGate();
 
     // tests :
-    for (int i = 0; i < 10; i++)
-    {
-        fight(&Bob, &Rober);
-    }
+    fight(&Bob, &Rober);
+    fight(&Rober, &Michelle);
+    fight(&Michelle, &Jacky);
+    fight(&Jacky, &Bob);
+    
     
     Bob.status();
     Rober.status();
+    Michelle.status();
+    Jacky.status();
 
     // Death messages :
-    Rober.takeDamage(2);
-    Rober.status();
-    Rober.attack(Bob.getName());
-    Rober.takeDamage(0);
-    Rober.beRepaired(0);
+    Jacky.takeDamage(9999);
+    Jacky.status();
+    Jacky.attack(Bob.getName());
+    Jacky.takeDamage(0);
+    Jacky.beRepaired(0);
+    Jacky.guardGate();
 
     return 0;
 }
