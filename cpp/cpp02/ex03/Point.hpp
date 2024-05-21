@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dailywind <dailywind@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 20:13:46 by dailywind         #+#    #+#             */
-/*   Updated: 2024/05/14 21:48:34 by dailywind        ###   ########.fr       */
+/*   Updated: 2024/05/16 08:59:26 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ class Point{
 		
 		// Specifics Constructors :
 		Point( Fixed x, Fixed y );
-
-		// Specifics Operators :
-		
-		// Utility Function :
 		
 		// Getters and Setters :
 		Fixed const		getX( void ) const;
