@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 09:11:41 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/06 14:41:21 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/04 10:04:42 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 
 	std::getline(infile, line, '\0');
 	while ((pos = line.find(s1, pos)) != std::string::npos) {
-		std::cout << pos << std::endl;
+		// std::cout << pos << std::endl;
 		line.erase(pos, s1.length());
 		line.insert(pos, s2);
 		pos += s2.length();

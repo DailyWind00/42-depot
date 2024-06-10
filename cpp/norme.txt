@@ -1,13 +1,15 @@
 
-// .hpp files :
-class Name{
+/// class.hpp files :
+class Name {
 	private :
+
+	protected :
 
 	public :
 		// Canonical Form :
 		Name();
-		Name( const Name &name );
-		Name & operator=( const Name &name );
+		Name( const Name &toCopy );
+		Name & operator=( const Name &toCopy );
 		~Name();
 		
 		// Specifics Constructors :
@@ -19,10 +21,11 @@ class Name{
 		// Getters and Setters :
 
 };
-// ---
+/// ---
 
 
-// Makefile :
+
+/// Makefile :
 ##------------------------------------##
 NAME = 	bsp
 
@@ -53,4 +56,30 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+/// ---
+
+
+
+/// class.cpp files
+// Canonical Form :
+Name::Name()
+{
+
+}
+
+Name::Name( const Name &toCopy )
+{
+
+}
+
+Name & Name::operator=( const Name &toCopy )
+{
+
+}
+
+Name::~Name()
+{
+
+}
 // ---
+/// ---

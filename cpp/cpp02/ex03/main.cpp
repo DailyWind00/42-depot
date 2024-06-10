@@ -6,7 +6,7 @@
 /*   By: dailywind <dailywind@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:38:18 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/14 22:30:36 by dailywind        ###   ########.fr       */
+/*   Updated: 2024/06/04 11:31:28 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ bool testBsp() {
     Point pointOnEdge(Fixed(0), Fixed(5));
     Point pointOnCorner(Fixed(0), Fixed(12.5f));
     Point pointOutside(Fixed(15), Fixed(15));
+
+	std::cout << "Point is outside a triangle if : Vectors < 0 || VectorX + VectorY > 1\n\n"; 
 
     if (!bsp(a, b, c, pointInside)) {
         std::cout << "Test failed: pointInside should be inside the triangle\n";

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 23:39:03 by marvin            #+#    #+#             */
-/*   Updated: 2024/04/25 23:39:03 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/04 09:59:08 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main()
 	HumanA		humanA("Bob", weapon);
 	HumanB		humanB("Jim");
 
+	std::cout << "bare hand = NULL\n\n";
+	
 	// HumanA attacks with crude spiked club
 	// HumanB attacks with his NULL (bare hands)
 	humanA.attack();

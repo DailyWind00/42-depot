@@ -6,7 +6,7 @@
 /*   By: dailywind <dailywind@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 20:13:56 by dailywind         #+#    #+#             */
-/*   Updated: 2024/05/14 22:29:39 by dailywind        ###   ########.fr       */
+/*   Updated: 2024/06/04 11:29:09 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,12 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	Fixed	vectorY = (point.getY() - a.getY() - vectorX * (b.getY() - a.getY())) / (c.getY() - a.getY());
 
 	std::cout << "vectorX: " << vectorX << std::endl;
-	std::cout << "vectorY: " << vectorY << std::endl << std::endl;
+	std::cout << "vectorY: " << vectorY << std::endl;
 	if (vectorX < 0 || vectorY < 0 || vectorX + vectorY > 1)
+	{
+		std::cout << "Point outside the triangle\n\n";
 		return false;
+	}
+	std::cout << "Point inside the triangle\n\n";
 	return true;
 }
