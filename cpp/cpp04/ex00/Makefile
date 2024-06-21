@@ -28,7 +28,6 @@ $(NAME): $(OBJS)
 
 clean:
 	rm -f $(OBJS)
-	rm -f $(wildcard tests/*.replace)
 
 fclean: clean
 	rm -f $(NAME)
