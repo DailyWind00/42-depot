@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:44:37 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/10 11:50:23 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:37:18 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Fire : public AMateria
 		Fire();
 		Fire(Fire const & toCopy);
 		// Fire & operator=(Fire const & toCopy); // Not needed
-		virtual ~Fire();
+		~Fire();
 		
 		// Utility Function :
 		AMateria * clone() const;

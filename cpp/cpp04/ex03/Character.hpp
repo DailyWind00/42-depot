@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:12:47 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/10 14:30:10 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:38:30 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Character : public ICharacter
 		Character();
 		Character( Character const & toCopy );
 		Character & operator=( Character const & toCopy );
-		virtual ~Character();
+		~Character();
 		
 		// Specifics Constructors :
 		Character( std::string const & name );

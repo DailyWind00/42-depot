@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:12:26 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/10 11:50:18 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:37:00 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Cure : public AMateria
 		Cure();
 		Cure(Cure const &toCopy);
 		// Cure &operator=(Cure const &toCopy); // Not needed
-		virtual ~Cure();
+		~Cure();
 
 		// Utility Function :
 		AMateria *clone() const;

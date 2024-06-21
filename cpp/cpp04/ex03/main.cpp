@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 09:50:36 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/10 14:13:15 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:05:58 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main()
 
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
-	tmp2 = tmp->clone();
+	tmp2 = tmp->clone(); // cloning *
 	
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
@@ -42,7 +42,7 @@ int main()
 	me->equip(tmp);
 	
 	tmp = src->createMateria("ice");
-	me->equip(tmp2);
+	me->equip(tmp2); // clone of the first ice materia *
 
 	// +4 equiped materia (error)
 	me->equip(tmp);
@@ -50,14 +50,18 @@ int main()
 	ICharacter* bob = new Character("bob");
 
 	me->use(0, *bob);
-	me->use(1, *bob);
+	me->use(1, *me);
 	me->use(2, *bob);
+	me->use(3, *bob);
 
 	me->unequip(0);
+
+	// unequip errors
+	me->unequip(0); // already unequiped
+	me->unequip(2147483647); // out of range
 
 	// use unequiped materia (error)
 	me->use(0, *bob);
-	me->unequip(0);
 
 	delete bob;
 	delete me;

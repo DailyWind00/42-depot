@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:12:56 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/10 14:31:27 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:29:39 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ Character & Character::operator=( Character const & toCopy )
 	return *this;
 }
 
-// delete the garbage collector
 Character::~Character()
 {
 	for (int i = 0; i < 4; i++)
-		if (materias[i] != NULL)
+		if (materias[i])
 			delete materias[i];
 }
 // ---
@@ -73,7 +72,6 @@ Character::Character( std::string const & name )
 
 
 // Utility Function :
-// store the pointer to the materia in the first empty slot and in the garbage collector
 void Character::equip( AMateria* m )
 {
 	if (!m)
@@ -93,7 +91,6 @@ void Character::equip( AMateria* m )
 	std::cout << "You can't equip more than 4 materias\n";
 }
 
-// does not delete the materia, just remove the pointer
 void Character::unequip( int idx )
 {
 	if (idx < 0 || idx >= 4)
