@@ -1,38 +1,10 @@
-
-/// class.hpp files :
-class Name {
-	private :
-
-	protected :
-
-	public :
-		// Canonical Form :
-		Name();
-		Name( const Name &toCopy );
-		Name & operator=( const Name &toCopy );
-		~Name();
-		
-		// Specifics Constructors :
-
-		// Specifics Operators :
-		
-		// Utility Function :
-		
-		// Getters and Setters :
-
-		// Exceptions :
-
-};
-/// ---
-
-
-
-/// Makefile :
 ##------------------------------------##
-NAME = 	bsp
+NAME = FormUp
 
-HEADERS =	ClapTrap.hpp #
-SRCS =	ClapTrap.cpp \
+HEADERS =	Bureaucrat.hpp \
+			Form.hpp #
+SRCS =	Bureaucrat.cpp \
+		Form.cpp \
 		main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
@@ -58,4 +30,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-/// ---
