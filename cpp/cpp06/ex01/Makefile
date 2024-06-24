@@ -1,8 +1,10 @@
 ##------------------------------------##
-NAME = Converter
+NAME = Serializer
 
-HEADERS =	ScalarConverter.hpp #
-SRCS =	ScalarConverter.cpp \
+HEADERS =	Serializer.hpp \
+			Data.hpp #
+SRCS =	Serializer.cpp \
+		Data.cpp \
 		main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 

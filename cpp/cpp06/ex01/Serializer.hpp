@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 13:26:52 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/24 16:09:51 by mgallais         ###   ########.fr       */
+/*   Created: 2024/06/24 15:38:02 by mgallais          #+#    #+#             */
+/*   Updated: 2024/06/24 16:18:45 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include <cstdlib>
+#include <stdint.h>
+#include "Data.hpp"
 
-class ScalarConverter {
+class Serializer {
 	private :
-		ScalarConverter();
-		ScalarConverter( const ScalarConverter &toCopy );
-		ScalarConverter & operator=( const ScalarConverter &toCopy );
+		Serializer();
+		Serializer( const Serializer &toCopy );
+		Serializer & operator=( const Serializer &toCopy );
 	public :
-		/// Canonical Form : 
-		virtual ~ScalarConverter() = 0;
+		/// Canonical Form :
+		virtual ~Serializer() = 0;
 		
 		/// Utility Function :
-		static void	convert( const std::string &toConvert );
+		static uintptr_t	serialize( Data* ptr );
+		static Data* 		deserialize( uintptr_t raw );
 };

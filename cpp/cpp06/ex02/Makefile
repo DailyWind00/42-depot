@@ -1,8 +1,11 @@
 ##------------------------------------##
-NAME = Converter
+NAME = RealType
 
-HEADERS =	ScalarConverter.hpp #
-SRCS =	ScalarConverter.cpp \
+HEADERS =	Base.hpp \
+			A.hpp \
+			B.hpp \
+			C.hpp #
+SRCS =	Base.cpp \
 		main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
