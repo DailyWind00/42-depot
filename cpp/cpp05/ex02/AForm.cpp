@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:40:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/21 17:19:41 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/24 09:54:23 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 // Canonical Form :
-Form::Form() : 
+AForm::AForm() : 
 		name("A form"), 
 		isSigned(false),
 		gradeToSign(150), 
@@ -21,7 +21,7 @@ Form::Form() :
 {
 }
 
-Form::Form( Form const & toCopy ) : 
+AForm::AForm( AForm const & toCopy ) : 
 		name(toCopy.name), 
 		isSigned(toCopy.isSigned),
 		gradeToSign(toCopy.gradeToSign), 
@@ -29,14 +29,14 @@ Form::Form( Form const & toCopy ) :
 {
 }
 
-Form & Form::operator=( Form const & toCopy )
+AForm & AForm::operator=( AForm const & toCopy )
 {
 	if (this != &toCopy)
 		isSigned = toCopy.isSigned;
 	return *this;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 }
 // ---
@@ -44,26 +44,26 @@ Form::~Form()
 
 
 // Specifics Constructors :
-Form::Form( std::string const &name, int gradeToSign, int gradeToExecute ) : 
+AForm::AForm( std::string const &name, int gradeToSign, int gradeToExecute ) : 
 		name(name), 
 		isSigned(false),
 		gradeToSign(gradeToSign), 
 		gradeToExecute(gradeToExecute)
 {
 	if (gradeToSign < 1 || gradeToExecute < 1)
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	if (gradeToSign > 150 || gradeToExecute > 150)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 }
 // ---
 
 
 
 // Utility Function :
-void	Form::beSigned( Bureaucrat const &bureaucrat )
+void	AForm::beSigned( Bureaucrat const &bureaucrat )
 {
 	if (bureaucrat.getGrade() > gradeToSign)
-		throw Form::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	isSigned = true;
 }
 // ---
@@ -71,22 +71,22 @@ void	Form::beSigned( Bureaucrat const &bureaucrat )
 
 
 // Getters and Setters :
-std::string const & Form::getName() const
+std::string const & AForm::getName() const
 {
 	return name;
 }
 
-bool	Form::getIsSigned() const
+bool	AForm::getIsSigned() const
 {
 	return isSigned;
 }
 
-int	Form::getGradeToSign() const
+int	AForm::getGradeToSign() const
 {
 	return gradeToSign;
 }
 
-int	Form::getGradeToExecute() const
+int	AForm::getGradeToExecute() const
 {
 	return gradeToExecute;
 }
@@ -95,12 +95,12 @@ int	Form::getGradeToExecute() const
 
 
 // Exceptions :
-const char *Form::GradeTooHighException::what() const throw()
+const char *AForm::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high";
 }
 
-const char *Form::GradeTooLowException::what() const throw()
+const char *AForm::GradeTooLowException::what() const throw()
 {
 	return "Grade is too low";
 }
@@ -108,7 +108,7 @@ const char *Form::GradeTooLowException::what() const throw()
 
 
 
-std::ostream & operator<<(std::ostream &os, const Form &form)
+std::ostream & operator<<(std::ostream &os, const AForm &form)
 {
 	os << "Form " << form.getName() << " is ";
 	if (form.getIsSigned())

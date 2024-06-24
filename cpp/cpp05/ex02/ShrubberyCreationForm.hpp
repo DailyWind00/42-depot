@@ -1,57 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 14:40:16 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/24 09:30:32 by mgallais         ###   ########.fr       */
+/*   Created: 2024/06/24 09:17:52 by mgallais          #+#    #+#             */
+/*   Updated: 2024/06/24 11:25:06 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include "Bureaucrat.hpp"
+#include <fstream>
+#include "AForm.hpp"
 
-class Bureaucrat;
-
-class Form {
+class ShrubberyCreationForm : public AForm
+{
 	private :
-		const std::string	name;
-		bool		isSigned;
-		const int	gradeToSign;
-		const int	gradeToExecute;
+		std::string const	target;
 
 	public :
 		/// Canonical Form :
-		Form();
-		Form( const Form &toCopy );
-		Form & operator=( const Form &toCopy );
-		~Form();
+		// ShrubberyCreationForm();
+		// ShrubberyCreationForm( const ShrubberyCreationForm &toCopy );
+		// ShrubberyCreationForm & operator=( const ShrubberyCreationForm &toCopy );
+		virtual ~ShrubberyCreationForm();
 		
 		/// Specifics Constructors :
-		Form( std::string const &name, int gradeToSign, int gradeToExecute );
+		ShrubberyCreationForm( std::string const &target );
 		
 		/// Utility Function :
-		void	beSigned( const Bureaucrat &bureaucrat );
-
+		void	execute( const Bureaucrat &executor ) const;
+		
 		/// Getters and Setters :
-		std::string const & getName() const;
-		bool	getIsSigned() const;
-		int		getGradeToSign() const;
-		int		getGradeToExecute() const;
+		std::string const & getTarget() const;
 
 		/// Exceptions :
-		class GradeTooHighException : public std::exception {
+		class FileNotOpenException : public std::exception {
 			public :
 				virtual const char *what() const throw();
 		};
-		class GradeTooLowException : public std::exception {
+		class FormUnsignedException : public std::exception {
 			public :
 				virtual const char *what() const throw();
 		};
-
 };
-std::ostream & operator<<(std::ostream &os, const Form &form);

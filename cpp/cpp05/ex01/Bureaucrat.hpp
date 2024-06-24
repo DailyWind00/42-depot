@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:08:32 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/21 15:05:45 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/24 09:30:38 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,34 @@ class Bureaucrat {
 		int		grade;
 
 	public :
-		// Canonical Form :
+		/// Canonical Form :
 		Bureaucrat();
 		Bureaucrat( const Bureaucrat &toCopy );
 		Bureaucrat & operator=( const Bureaucrat &toCopy );
 		~Bureaucrat();
 		
-		// Specifics Constructors :
+		/// Specifics Constructors :
 		Bureaucrat( std::string const &name, int grade );
 		Bureaucrat( std::string const &name );
 		Bureaucrat( int grade );
 
-		// Specifics Operators :
+		/// Specifics Operators :
 		Bureaucrat & operator++();
 		Bureaucrat operator++( int );
 		Bureaucrat & operator--();
 		Bureaucrat operator--( int );
 		
-		// Utility Function :
+		/// Utility Function :
 		void	incrementGrade( int amount = 1 );
 		void	decrementGrade( int amount = 1 );
 		void	printGrade() const;
 		void	signForm( class Form &form );
 		
-		// Getters and Setters :
+		/// Getters and Setters :
 		std::string const & getName() const;
 		int		getGrade() const;
 
-		// Exceptions :
+		/// Exceptions :
 		class GradeTooHighException : public std::exception {
 			public :
 				virtual const char *what() const throw();

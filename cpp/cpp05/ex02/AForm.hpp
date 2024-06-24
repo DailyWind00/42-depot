@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:40:16 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/21 15:08:23 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/24 09:52:53 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,34 @@
 
 class Bureaucrat;
 
-class Form {
-	private :
+class AForm {
+	protected :
 		const std::string	name;
 		bool		isSigned;
 		const int	gradeToSign;
 		const int	gradeToExecute;
 
-	public :
-		// Canonical Form :
-		Form();
-		Form( const Form &toCopy );
-		Form & operator=( const Form &toCopy );
-		~Form();
+	public :	
+		/// Canonical Form :
+		AForm();
+		AForm( const AForm &toCopy );
+		AForm & operator=( const AForm &toCopy );
+		virtual ~AForm() = 0;
 		
-		// Specifics Constructors :
-		Form( std::string const &name, int gradeToSign, int gradeToExecute );
+		/// Specifics Constructors :
+		AForm( std::string const &name, int gradeToSign, int gradeToExecute );
 		
-		// Utility Function :
-		void	beSigned( const Bureaucrat &bureaucrat );
+		/// Utility Function :
+		void			beSigned( const Bureaucrat &bureaucrat );
+		virtual void	execute(Bureaucrat const & executor) const = 0;
 
-		// Getters and Setters :
+		/// Getters and Setters :
 		std::string const & getName() const;
 		bool	getIsSigned() const;
 		int		getGradeToSign() const;
 		int		getGradeToExecute() const;
 
-		// Exceptions :
+		/// Exceptions :
 		class GradeTooHighException : public std::exception {
 			public :
 				virtual const char *what() const throw();
@@ -54,4 +55,4 @@ class Form {
 		};
 
 };
-std::ostream & operator<<(std::ostream &os, const Form &form);
+std::ostream & operator<<(std::ostream &os, const AForm &form);

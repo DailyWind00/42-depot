@@ -6,21 +6,21 @@ class Name {
 	protected :
 
 	public :
-		// Canonical Form :
+		/// Canonical Form :
 		Name();
 		Name( const Name &toCopy );
 		Name & operator=( const Name &toCopy );
 		~Name();
 		
-		// Specifics Constructors :
+		/// Specifics Constructors :
 
-		// Specifics Operators :
+		/// Specifics Operators :
 		
-		// Utility Function :
+		/// Utility Function :
 		
-		// Getters and Setters :
+		/// Getters and Setters :
 
-		// Exceptions :
+		/// Exceptions :
 
 };
 /// ---

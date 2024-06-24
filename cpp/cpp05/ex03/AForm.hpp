@@ -1,50 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 13:08:32 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/24 09:30:47 by mgallais         ###   ########.fr       */
+/*   Created: 2024/06/21 14:40:16 by mgallais          #+#    #+#             */
+/*   Updated: 2024/06/24 09:52:53 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
-class Bureaucrat {
-	private :
-		std::string const name;
-		int grade;
+class Bureaucrat;
 
-	public :
+class AForm {
+	protected :
+		const std::string	name;
+		bool		isSigned;
+		const int	gradeToSign;
+		const int	gradeToExecute;
+
+	public :	
 		/// Canonical Form :
-		Bureaucrat();
-		Bureaucrat( const Bureaucrat &toCopy );
-		Bureaucrat & operator=( const Bureaucrat &toCopy );
-		~Bureaucrat();
+		AForm();
+		AForm( const AForm &toCopy );
+		AForm & operator=( const AForm &toCopy );
+		virtual ~AForm() = 0;
 		
 		/// Specifics Constructors :
-		Bureaucrat( std::string const &name, int grade );
-		Bureaucrat( std::string const &name );
-		Bureaucrat( int grade );
-
-		/// Specifics Operators :
-		Bureaucrat & operator++();
-		Bureaucrat operator++( int );
-		Bureaucrat & operator--();
-		Bureaucrat operator--( int );
+		AForm( std::string const &name, int gradeToSign, int gradeToExecute );
 		
 		/// Utility Function :
-		void	incrementGrade( int amount = 1 );
-		void	decrementGrade( int amount = 1 );
-		void	printGrade() const;
-		
+		void			beSigned( const Bureaucrat &bureaucrat );
+		virtual void	execute(Bureaucrat const & executor) const = 0;
+
 		/// Getters and Setters :
 		std::string const & getName() const;
-		int getGrade() const;
+		bool	getIsSigned() const;
+		int		getGradeToSign() const;
+		int		getGradeToExecute() const;
 
 		/// Exceptions :
 		class GradeTooHighException : public std::exception {
@@ -55,5 +53,6 @@ class Bureaucrat {
 			public :
 				virtual const char *what() const throw();
 		};
+
 };
-std::ostream & operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
+std::ostream & operator<<(std::ostream &os, const AForm &form);
