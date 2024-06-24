@@ -1,18 +1,9 @@
 ##------------------------------------##
-NAME = Forms
+NAME = Converter
 
-HEADERS =	Bureaucrat.hpp \
-			ShrubberyCreationForm.hpp \
-			RobotomyRequestForm.hpp \
-			PresidentialPardonForm.hpp \
-			Intern.hpp \
-			AForm.hpp #
-SRCS =	Bureaucrat.cpp \
-		ShrubberyCreationForm.cpp \
-		RobotomyRequestForm.cpp \
-		PresidentialPardonForm.cpp \
-		AForm.cpp \
-		Intern.cpp \
+HEADERS =	ScalarConverter.hpp #
+SRCS =	ScalarConverter.cpp \
+		convertion.cpp \
 		main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
@@ -33,7 +24,6 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f *_shrubbery
 
 re: fclean all
 
