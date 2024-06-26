@@ -1,5 +1,5 @@
 ##------------------------------------##
-NAME = Template
+NAME = Abomination
 
 HEADERS =	Array.hpp #
 SRCS =	main.cpp #

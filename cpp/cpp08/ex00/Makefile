@@ -1,7 +1,7 @@
 ##------------------------------------##
-NAME = Template
+NAME = EasyFind
 
-HEADERS =	Array.hpp #
+#HEADERS =	
 SRCS =	main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 

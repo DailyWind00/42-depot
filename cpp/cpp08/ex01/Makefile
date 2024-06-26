@@ -1,8 +1,9 @@
 ##------------------------------------##
-NAME = Template
+NAME = Span
 
-HEADERS =	Array.hpp #
-SRCS =	main.cpp #
+HEADERS =	Span.hpp #
+SRCS =	main.cpp \
+		Span.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++

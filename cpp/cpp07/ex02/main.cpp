@@ -6,12 +6,12 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 08:56:32 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/25 11:45:26 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:55:44 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
-#include "Array.cpp" // This is the only way to compile this code because of the template
+#include "Array.tpp" // This is the only way to compile this code because of the template
 
 int main() {
     // Test case 1: Creating an array of integers
