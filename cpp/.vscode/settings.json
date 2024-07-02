@@ -1,0 +1,12 @@
+{
+	"C_Cpp.default.compilerPath": "/usr/bin/clang",
+	"*.tpp": "cpp",
+	"*.hpp": "cpp",
+	"*.cpp": "cpp",
+	"files.associations": {
+		"*.hpp": "cpp",
+		"*.tpp": "cpp",
+		"iostream": "cpp",
+		"stack": "cpp"
+	},
+}

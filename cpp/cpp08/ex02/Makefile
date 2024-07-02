@@ -1,7 +1,7 @@
 ##------------------------------------##
 NAME = Abomination
 
-HEADERS =	Array.hpp #
+HEADERS =	MutantStack.hpp #
 SRCS =	main.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
