@@ -1,8 +1,9 @@
 ##------------------------------------##
-NAME = Abomination
+NAME = btc
 
-HEADERS =	MutantStack.hpp #
-SRCS =	main.cpp #
+HEADERS =	BitcoinExchange.hpp #
+SRCS =	main.cpp \
+		BitcoinExchange.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++

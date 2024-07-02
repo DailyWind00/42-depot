@@ -2,8 +2,14 @@
 /// class.hpp files :
 class Name {
 	private :
+		/// Attributes :
+		
+		/// Private Functions :
 
 	protected :
+		/// Attributes :
+		
+		/// Utility Function :
 
 	public :
 		/// Canonical Form :
@@ -16,7 +22,7 @@ class Name {
 
 		/// Specifics Operators :
 		
-		/// Utility Function :
+		/// Public Functions :
 		
 		/// Getters and Setters :
 
