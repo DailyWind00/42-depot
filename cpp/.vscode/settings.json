@@ -8,6 +8,8 @@
 		"*.tpp": "cpp",
 		"iostream": "cpp",
 		"stack": "cpp",
-		"iosfwd": "cpp"
+		"iosfwd": "cpp",
+		"ostream": "cpp",
+		"*.tcc": "cpp"
 	},
 }

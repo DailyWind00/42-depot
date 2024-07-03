@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:48:37 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/02 18:34:55 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:27:08 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 #include <iostream>
 #include <fstream>
+#include <unistd.h>
+#include <stdlib.h>
 #include <map>
 
 class BTC {
 	private :
 		/// Attributes :
-		std::map<size_t, float> data;
+		std::map<size_t, float> database;
 		
 		/// Private Functions :
-		std::fstream	openFile( const char *path ) const;
+		std::ifstream	&openFile( const char *path ) const;
 		size_t	convertDateToNumber( std::string date ) const;
-		void	addToData( size_t date, float value );
+		int		checkMonthDayNumber( int month, int year ) const;
+		bool	checkLineFormat( std::string line, char limiter ) const;
 		
 	public :
 		/// Canonical Form :
@@ -34,7 +37,7 @@ class BTC {
 		~BTC();
 		
 		/// Public Functions :
-		void	getBitcoinDatabase( const char *path );
+		void	addBitcoinDatabase( const char *path );
 		void	findBitcoinValue( const char *path ) const;
 
 		/// Exceptions :
