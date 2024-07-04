@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:48:37 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/03 15:27:08 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/04 09:29:13 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ class BTC {
 			public :
 				virtual const char *what() const throw();
 		};
-
+		class BadInputException : public std::exception {
+			public :
+				virtual const char *what() const throw();
+		};
 };

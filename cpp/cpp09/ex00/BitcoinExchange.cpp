@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:49:06 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/03 16:06:44 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/04 10:54:49 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	BTC::convertDateToNumber( std::string date ) const
 {
 	size_t	convertion = 0;
 	
-	/// Convertion : YYYY-MM-DD to size_t YYYYMMDD
+	/// Convertion : string YYYY-MM-DD to size_t YYYYMMDD
 	// std::cout << "===" << date << "\n";
 	convertion += atoi(date.substr(0, 4).c_str()) * 10000;
 	convertion += atoi(date.substr(6, 7).c_str()) * 100;
@@ -73,16 +73,20 @@ bool BTC::checkLineFormat(std::string line, char limiter) const
 			return false;
 		if ( strtof(line.substr(11).c_str(), NULL) == 0 && line[11] != '0' )
 			return false;
+		if ( strtof(line.substr(11).c_str(), NULL) < 0 )
+			return false;
 		return true;
 	}
 	else if ( limiter == '|' )
 	{
 		if ( line[10] != ' ' && line[11] != limiter && line[12] != ' ' )
-			return false;
-		if ( strtof(line.substr(11).c_str(), NULL) == 0 && line[11] != '0' )
-			return false;
-		if ( strtof(line.substr(11).c_str(), NULL) < 0 || strtof(line.substr(11).c_str(), NULL) > 1000 )
-			return false;
+			throw BTC::BadInputException();
+		if ( strtof(line.substr(12).c_str(), NULL) == 0 && line[11] != '0' )
+			throw BTC::BadInputException();
+		if ( strtof(line.substr(12).c_str(), NULL) < 0 )
+			throw BTC::NegativeNumberException();
+		if ( strtof(line.substr(12).c_str(), NULL) > 1000 )
+			throw BTC::TooLargeNumberException();
 		return true;
 	}
 
@@ -121,6 +125,7 @@ BTC::~BTC()
 // Public functions :
 void	BTC::addBitcoinDatabase( const char *path )
 {
+	std::cout << "Info: Loading database : " << path << "\n";
 	try
 	{
 		std::ifstream &databaseFile = openFile( path );
@@ -144,21 +149,55 @@ void	BTC::addBitcoinDatabase( const char *path )
 			database.insert(std::pair<size_t, float>(date, value));
 		}
 
-		std::cout << "Info: " << i << " datas received                                  \n";
-		std::cout << "Info: " << j << " datas accepted                                  \n";
+		std::cout << "| " << i << " datas received                                  \n";
+		std::cout << "| " << j << " datas accepted                                  \n";
+		std::cout << "| > " << i - j << " datas lost                                \n";
 
 		databaseFile.close();
 	}
 	catch( const std::exception& e )
 	{
-		std::cerr << "Error: " << e.what() << '\n';
+		std::cerr << "> Error: " << e.what() << '\n';
 	}
 	
 }
 
 void	BTC::findBitcoinValue( const char *path ) const
 {
-	(void)path;
+	std::cout << "Info: Bitcoin convertion from file : " << path << "\n";
+	try
+	{
+		std::ifstream &BTCRequestFile = openFile( path );
+
+		for (std::string line; std::getline(BTCRequestFile, line); ) 
+		{
+			try
+			{
+				if ( !checkLineFormat(line, '|') )
+					throw BTC::InvalidDateFormatException();
+				
+				// find btc value
+				size_t	date = convertDateToNumber(line.substr(0, 10));
+				float	value = atof(line.substr(12).c_str());
+				
+				std::map<size_t, float>::const_iterator it = database.lower_bound(date);
+				if ( it == database.end() )
+					throw BTC::InvalidDateFormatException();
+				
+				it--;
+				std::cout << "| " << line.substr(0, 10) << " => " << value << " = " << it->second * value << "\n";
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << "| > Error: " << e.what() << '\n';
+			}
+			
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "> Error: " << e.what() << '\n';
+	}
 }
 // ---
 
@@ -184,5 +223,10 @@ const char *BTC::NegativeNumberException::what() const throw()
 const char *BTC::TooLargeNumberException::what() const throw()
 {
 	return "Too large number.";
+}
+
+const char *BTC::BadInputException::what() const throw()
+{
+	return "Bad inputs.";
 }
 // ---
