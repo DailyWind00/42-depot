@@ -1,8 +1,9 @@
 ##------------------------------------##
-NAME = Abomination
+NAME = RPN
 
-HEADERS =	MutantStack.hpp #
-SRCS =	main.cpp #
+HEADERS =	RPN.hpp #
+SRCS =	main.cpp \
+		RPN.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
