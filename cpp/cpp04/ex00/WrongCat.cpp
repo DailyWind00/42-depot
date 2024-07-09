@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:50:17 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 11:04:28 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:35:51 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ WrongCat::WrongCat( const WrongCat &wrongCat )
 WrongCat & WrongCat::operator=( const WrongCat &wrongCat )
 {
 	std::cout << "[WrongCat] Copy assignment operator called\n";
-	*static_cast<WrongAnimal *>(this) = wrongCat;
+	if (this != &wrongCat) {
+		WrongAnimal::operator=(wrongCat);
+	}
 	return *this;
 }
 

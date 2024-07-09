@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:50:03 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 10:50:35 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:36:19 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ Dog::Dog( const Dog &dog )
 Dog & Dog::operator=( const Dog &dog )
 {
 	std::cout << "[Dog] Copy assignment operator called\n";
-	*static_cast<Animal *>(this) = dog;
+	if (this != &dog) {
+		*static_cast<Animal *>(this) = dog;
+	}
 	return *this;
 }
 

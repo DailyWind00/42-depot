@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:50:17 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 11:22:05 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/09 10:16:30 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,17 @@ Cat::Cat()
 Cat::Cat( const Cat &cat )
 {
 	std::cout << "[Cat] Copy Constructor called\n";
-	*this = cat;
-	*this->brain = *cat.brain;
+	this->type = cat.type;
+	this->brain = new Brain(*cat.brain);
 }
 
 Cat & Cat::operator=( const Cat &cat )
 {
 	std::cout << "[Cat] Copy assignment operator called\n";
-	*static_cast<Animal *>(this) = cat;
+	if (this != &cat) {
+		*this->brain = *cat.brain;
+		this->type = cat.type;
+	}
 	return *this;
 }
 

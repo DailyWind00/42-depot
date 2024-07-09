@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:49:00 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 11:36:26 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/09 10:17:09 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ int main() {
 		animals[i]->makeSound();
 		delete animals[i];
 	}
+
+	std::cout << std::endl;
+	std::cout << "Deep copy proof :\n";
+	std::cout << "  Should crash if not implemented correctly\n";
+	Cat cat;
+	Cat cat2(cat);
+	Cat cat3 = cat;
+	cat3.makeSound();
+	cat2.makeSound();
+	cat.makeSound();
 
 	return 0;
 }

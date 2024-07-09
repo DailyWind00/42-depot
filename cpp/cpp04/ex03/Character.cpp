@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:12:56 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/21 11:29:39 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/09 10:27:50 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Character::Character( Character const & toCopy )
 	for (int i = 0; i < 4; i++)
 	{
 		if (toCopy.materias[i])
-			materias[i] = toCopy.materias[i]->clone();
+			materias[i] = toCopy.materias[i]->clone(); // Deep copy because clone use new
 		else
 			materias[i] = NULL;
 	}
@@ -42,7 +42,7 @@ Character & Character::operator=( Character const & toCopy )
 			if (materias[i])
 				delete materias[i];
 			if (toCopy.materias[i])
-				materias[i] = toCopy.materias[i]->clone();
+				materias[i] = toCopy.materias[i]->clone(); // Deep copy because clone use new
 			else
 				materias[i] = NULL;
 		}

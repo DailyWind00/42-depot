@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:49:47 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 11:01:30 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:36:07 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ WrongAnimal::WrongAnimal( const WrongAnimal &wrongAnimal )
 WrongAnimal & WrongAnimal::operator=( const WrongAnimal &wrongAnimal )
 {
 	std::cout << "[WrongAnimal] Copy assignment operator called\n";
-	this->type = wrongAnimal.type;
+	if (this != &wrongAnimal) {
+		this->type = wrongAnimal.type;
+	}
 	return *this;
 }
 

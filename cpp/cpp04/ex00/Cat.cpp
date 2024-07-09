@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:50:17 by mgallais          #+#    #+#             */
-/*   Updated: 2024/05/22 10:50:10 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:36:28 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ Cat::Cat( const Cat &cat )
 Cat & Cat::operator=( const Cat &cat )
 {
 	std::cout << "[Cat] Copy assignment operator called\n";
-	*static_cast<Animal *>(this) = cat;
+	if (this != &cat) {
+		*static_cast<Animal *>(this) = cat;
+	}
 	return *this;
 }
 
