@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:49:06 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/04 10:54:49 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:51:13 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ bool BTC::checkLineFormat(std::string line, char limiter) const
 			throw BTC::TooLargeNumberException();
 		return true;
 	}
-
 	return false;
 }
 // ---
@@ -181,9 +180,6 @@ void	BTC::findBitcoinValue( const char *path ) const
 				float	value = atof(line.substr(12).c_str());
 				
 				std::map<size_t, float>::const_iterator it = database.lower_bound(date);
-				if ( it == database.end() )
-					throw BTC::InvalidDateFormatException();
-				
 				it--;
 				std::cout << "| " << line.substr(0, 10) << " => " << value << " = " << it->second * value << "\n";
 			}
