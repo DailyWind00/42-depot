@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:08:29 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/21 14:23:18 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:48:31 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ int	main()
 		intern--;
 		std::cout << intern << std::endl;
 		// ---
+
+		// Exceptions :
+		std::cout << "\nExceptions : \n";
+		intern.decrementGrade(-42); // negative number handled
 	}
 	catch (std::exception &e)
 	{

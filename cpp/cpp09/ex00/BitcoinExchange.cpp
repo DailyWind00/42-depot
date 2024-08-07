@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:49:06 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/22 09:51:13 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:44:32 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void	BTC::findBitcoinValue( const char *path ) const
 				size_t	date = convertDateToNumber(line.substr(0, 10));
 				float	value = atof(line.substr(12).c_str());
 				
-				std::map<size_t, float>::const_iterator it = database.lower_bound(date);
+				std::map<size_t, float>::const_iterator it = database.upper_bound(date);
 				it--;
 				std::cout << "| " << line.substr(0, 10) << " => " << value << " = " << it->second * value << "\n";
 			}

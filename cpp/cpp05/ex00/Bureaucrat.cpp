@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:08:34 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/21 15:20:03 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:38:41 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,15 @@ void Bureaucrat::incrementGrade( int amount )
 {
 	if (grade - amount < 1)
 		throw Bureaucrat::GradeTooHighException();
+	if (grade - amount > 150)
+		throw Bureaucrat::GradeTooLowException();
 	grade -= amount;
 }
 
 void Bureaucrat::decrementGrade( int amount )
 {
+	if (grade + amount < 1)
+		throw Bureaucrat::GradeTooHighException();
 	if (grade + amount > 150)
 		throw Bureaucrat::GradeTooLowException();
 	grade += amount;

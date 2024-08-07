@@ -6,13 +6,14 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:53:30 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/08 10:24:52 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:13:50 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <sstream> // stringstream
 #include <stack>
 
 class RPNCalculator {
@@ -21,7 +22,6 @@ class RPNCalculator {
 		std::stack<size_t>	nums;
 
 		/// Private Functions :
-		bool	checkSyntax( std::string line ) const;
 		bool	isoperator( int c ) const;
 
 	public :
@@ -32,7 +32,7 @@ class RPNCalculator {
 		~RPNCalculator();
 		
 		/// Public Functions :
-		size_t	calculate( std::string line );
+		long	calculate( std::string line );
 
 		/// Exceptions :
 		class InvalidSyntaxException : public std::exception {
