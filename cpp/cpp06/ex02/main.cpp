@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:25:05 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/24 16:42:20 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:25:53 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ int main()
 	identify(base);
 	identify(*base);
 	delete base;
-	return 0;
+	return EXIT_SUCCESS;
 }

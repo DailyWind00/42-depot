@@ -64,7 +64,7 @@ Array<T>::Array( size_t size ) : elements(new T[size]), array_size(size)
 template <typename T>
 T& Array<T>::operator[]( size_t index )
 {
-	if (index < 0 || index >= this->array_size)
+	if (index >= this->array_size)
 		throw Array::IndexOutOfBoundException();
 	return this->elements[index];
 }

@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 08:56:32 by mgallais          #+#    #+#             */
-/*   Updated: 2024/06/25 09:20:50 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:14:48 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int main( void ) {
 
 	iter(array2, 8, printChar);
 	std::cout << std::endl;
+
+	// Does not compile because the type of the array is not the same as the type of the function
+	// iter(array2, 8, printInt);
+
 	
 	return 0;
 }
