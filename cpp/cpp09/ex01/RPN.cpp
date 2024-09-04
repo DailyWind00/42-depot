@@ -6,26 +6,25 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:53:24 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/22 11:43:13 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:15:12 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
 // Canonical Form :
-RPNCalculator::RPNCalculator() : nums()
+RPNCalculator::RPNCalculator()
 {
 }
 
-RPNCalculator::RPNCalculator( const RPNCalculator &toCopy ) : nums(toCopy.nums)
+RPNCalculator::RPNCalculator( const RPNCalculator &toCopy )
 {
+	*this = toCopy;
 }
 
 RPNCalculator & RPNCalculator::operator=( const RPNCalculator &toCopy )
 {
-	if ( this == &toCopy )
-		return *this;
-	nums = toCopy.nums;
+	(void)toCopy;
 	return *this;
 }
 
@@ -37,7 +36,7 @@ RPNCalculator::~RPNCalculator()
 
 
 // Private Functions :
-bool RPNCalculator::isoperator( int c ) const
+bool isoperator( int c )
 {
 	return ( c == '+' || c == '-' || c == '*' || c == '/' || c == '%' );
 }
@@ -46,64 +45,76 @@ bool RPNCalculator::isoperator( int c ) const
 
 
 // Public Functions :
-long	RPNCalculator::calculate( std::string line )
+long	RPNCalculator::calculate( std::string line, bool verbose )
 {
 	try
 	{
+		if ( verbose )
+			std::cout << "╮ " << std::endl;
+
 		if ( line.empty())
 			throw EmptyArgumentException();
 		
+		std::stack<ssize_t>	nums; // container stack LIFO
 		std::stringstream	ss(line);
 
-		while ( ss.good() )
-		{
+		while ( ss.good() ) {
 			std::string	tmp;
 			ss >> tmp;
 
 			if ( tmp.empty() )
 				continue;
+			if ( tmp.size() != 1)
+				throw InvalidSyntaxException();
 
-			if ( tmp.size() > 1 || (tmp[0] < '0' || tmp[0] > '9') )
-			{
-				if ( tmp.size() > 1 || !isoperator(tmp[0]) )
-					throw InvalidSyntaxException();
-				if ( nums.size() < 2 )
-					throw ImpossibleCalculationException();
+			if ( isdigit(tmp[0]) ) {
+				nums.push( std::atoi(tmp.c_str()) );
+			}
+			else if ( isoperator(tmp[0]) && nums.size() >= 2 ) {
 
-				size_t	n1 = nums.top(); nums.pop();
-				size_t	n2 = nums.top(); nums.pop();
-
-				switch (tmp[0])
-				{
-					case '+':
-						nums.push(n1 + n2);
-						break;
-					case '-':
-						nums.push(n2 - n1);
-						break;
-					case '*':
-						nums.push(n1 * n2);
-						break;
-					case '/':
-						if (n1 == 0)
-							throw DivisionByZeroException();
-						nums.push(n2 / n1);
-						break;
-					case '%':
-						if (n1 == 0)
-							throw DivisionByZeroException();
-						nums.push(n2 % n1);
-						break;
-					default:
-						throw InvalidNumberException();
+				ssize_t	b = nums.top(); nums.pop();
+				ssize_t	a = nums.top(); nums.pop();
+				
+				if ( tmp[0] == '+' ) {
+					nums.push( a + b );
 				}
-				nums.push(tmp[0] - '0');
+				else if ( tmp[0] == '-' ) {
+					nums.push( a - b );
+				}
+				else if ( tmp[0] == '*' ) {
+					nums.push( a * b );
+				}
+				else if ( tmp[0] == '/' ) {
+					if ( b == 0 )
+						throw DivisionByZeroException();
+					nums.push( a / b );
+				}
+				else if ( tmp[0] == '%' ) {
+					if ( b == 0 )
+						throw DivisionByZeroException();
+					nums.push( a % b );
+				}
+				
+				if ( verbose )
+					std::cout << "│ " << a << " " << tmp[0] << " " << b << " = " << nums.top() << std::endl;
+			}
+			else {
+				throw InvalidSyntaxException();
 			}
 		}
+		
+		if ( nums.size() != 1 )
+			throw TooManyArgumentsException();
+
+		if ( verbose )
+			std::cout << "╯ " << std::endl;
+		return nums.top();
 	}
 	catch( const std::exception& e )
 	{
-		std::cerr << "Error: " << e.what() << '\n';
+		std::cerr << "│ Error: " << e.what() << '\n';
+		if ( verbose )
+			std::cerr << "╯ " << std::endl;
 		return -1;
 	}
 }
@@ -122,14 +133,9 @@ const char *RPNCalculator::EmptyArgumentException::what() const throw()
 	return "Empty argument";
 }
 
-const char *RPNCalculator::InvalidNumberException::what() const throw()
+const char *RPNCalculator::TooManyArgumentsException::what() const throw()
 {
-	return "Number must be between 0 and 9";
-}
-
-const char *RPNCalculator::ImpossibleCalculationException::what() const throw()
-{
-	return "Does not respect RPN notation";
+	return "Too many arguments at the end of the calculation";
 }
 
 const char *RPNCalculator::DivisionByZeroException::what() const throw()

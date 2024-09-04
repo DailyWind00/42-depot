@@ -1,8 +1,9 @@
 ##------------------------------------##
-NAME = Abomination
+NAME = PmergeMe
 
-HEADERS =	MutantStack.hpp #
-SRCS =	main.cpp #
+HEADERS =	PmergeMe.hpp #
+SRCS =	main.cpp \
+		PmergeMe.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++

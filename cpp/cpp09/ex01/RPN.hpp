@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:53:30 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/22 10:13:50 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:14:19 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 #include <iostream>
 #include <sstream> // stringstream
 #include <stack>
+#include <cstdlib>
 
 class RPNCalculator {
-	private :
-		/// Attributes :
-		std::stack<size_t>	nums;
-
-		/// Private Functions :
-		bool	isoperator( int c ) const;
-
 	public :
 		/// Canonical Form :
 		RPNCalculator();
@@ -32,7 +26,7 @@ class RPNCalculator {
 		~RPNCalculator();
 		
 		/// Public Functions :
-		long	calculate( std::string line );
+		long	calculate( std::string line, bool verbose = false );
 
 		/// Exceptions :
 		class InvalidSyntaxException : public std::exception {
@@ -43,11 +37,7 @@ class RPNCalculator {
 			public :
 				virtual const char *what() const throw();
 		};
-		class InvalidNumberException : public std::exception {
-			public :
-				virtual const char *what() const throw();
-		};
-		class ImpossibleCalculationException : public std::exception {
+		class TooManyArgumentsException : public std::exception {
 			public :
 				virtual const char *what() const throw();
 		};
@@ -56,3 +46,5 @@ class RPNCalculator {
 				virtual const char *what() const throw();
 		};
 };
+
+bool	isoperator( int c );

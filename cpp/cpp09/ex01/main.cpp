@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:53:02 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/22 11:10:21 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:03:33 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv) {
 	
 	RPNCalculator	calc = RPNCalculator();
 
-	long	result = calc.calculate( (std::string)argv[1] );
+	ssize_t	result = calc.calculate( (std::string)argv[1] , true );
 
 	if ( result == -1 ) {
 		std::cerr << "Error: Failed to calculate\n";
