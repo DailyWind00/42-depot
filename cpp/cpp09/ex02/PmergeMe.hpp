@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:34:03 by mgallais          #+#    #+#             */
-/*   Updated: 2024/09/05 10:32:50 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:46:06 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <sstream>
 # include <deque>
 # include <vector>
+# include <ctime>
 
 #define BWhite	"\033[1;37m"
 #define BGray	"\033[1;38;5;250m"

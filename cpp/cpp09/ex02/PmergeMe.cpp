@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:34:06 by mgallais          #+#    #+#             */
-/*   Updated: 2024/09/05 10:35:14 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:47:42 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,22 @@ std::vector<size_t> PmergeMe::ConvertVector(char **args) {
 		ss >> num;
 		list.push_back(num);
 	}
+	return list;
+}
+
+const std::deque<size_t> PmergeMe::DequeMergeInsert(std::deque<size_t> list, double &time) {
+	std::clock_t start = std::clock();
+	// merge-insertion sort
+	std::clock_t end = std::clock();
+	time = (end - start) * 1000000 / CLOCKS_PER_SEC;
+	return list;
+}
+
+const std::vector<size_t> PmergeMe::VectorMergeInsert(std::vector<size_t> list, double &time) {
+	std::clock_t start = std::clock();
+	// merge-insertion sort
+	std::clock_t end = std::clock();
+	time = (end - start) * 1000000 / CLOCKS_PER_SEC;
 	return list;
 }
 
