@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:34:09 by mgallais          #+#    #+#             */
-/*   Updated: 2024/09/05 10:38:02 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:16:41 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv) {
 	{
 		double DequeTime = 0;
 		double VectorTime = 0;
+		argv++;
 
 		std::deque<size_t> deque = PmergeMe::ConvertDeque(argv);
 		std::vector<size_t> vector = PmergeMe::ConvertVector(argv);
@@ -29,10 +30,10 @@ int	main(int argc, char **argv) {
 		std::deque<size_t> dequeSorted = PmergeMe::DequeMergeInsert(deque, DequeTime);
 		std::vector<size_t> vectorSorted = PmergeMe::VectorMergeInsert(vector, VectorTime);
 
-		std::cout << BWhite << "Before : "; PmergeMe::PrintDeque(deque);
-		std::cout << "After :"; PmergeMe::PrintDeque(dequeSorted);
-		std::cout << "Time to process a range of " << dequeSorted.size() << " elements with deque : " << DequeTime << " us\n";
-		std::cout << "Time to process a range of " << vectorSorted.size() << " elements with vector : " << VectorTime << " us\n";
+		std::cout << BWhite << "Before : "; PmergeMe::PrintDeque(deque); std::cout << std::endl;
+		std::cout << BWhite << "After : "; PmergeMe::PrintDeque(dequeSorted); std::cout << std::endl;
+		std::cout << BWhite << "Time to process a range of " << dequeSorted.size() << " elements with deque : " << DequeTime << " us\n";
+		std::cout << BWhite << "Time to process a range of " << vectorSorted.size() << " elements with vector : " << VectorTime << " us\n";
 	}
 	catch(const std::exception& e)
 	{
