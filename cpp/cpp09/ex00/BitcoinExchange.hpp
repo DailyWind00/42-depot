@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:48:37 by mgallais          #+#    #+#             */
-/*   Updated: 2024/07/04 09:29:13 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:43:08 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class BTC {
 	private :
 		/// Attributes :
 		std::map<size_t, float> database;
-		
+
 		/// Private Functions :
 		std::ifstream	&openFile( const char *path ) const;
 		size_t	convertDateToNumber( std::string date ) const;
