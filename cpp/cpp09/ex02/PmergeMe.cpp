@@ -37,7 +37,8 @@ static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list, bool 
 	pairDeq pairs; // Deque container of pairs
 	bool odd = (bool)(list.size() % 2);
 	bool insert = true;
-	std::cout << std::endl;
+
+	std::cout << std::endl; // to remove
 
 	if (odd) { // Odd number of elements handling
 		sorted_list.push_back(list.back());
@@ -67,8 +68,8 @@ static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list, bool 
 		// wikipedia
 		// sorted_list = binary_search(...);
 
-		PmergeMe::PrintDeque(lowest_list);
-		PmergeMe::PrintDeque(highest_list);
+		PmergeMe::PrintDeque(lowest_list); // to remove
+		PmergeMe::PrintDeque(highest_list); // to remove
 
 		return sorted_list;
 	}
@@ -77,8 +78,8 @@ static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list, bool 
 		sorted_list.push_front(it->first);
 		sorted_list.push_front(it->second);
 	}
-	if (odd) {
-		sorted_list.push_front(sorted_list.back()); // If not recursive, the odd number should be in first instead of last
+	if (odd) { // If not recursive, the odd number should be in first instead of last
+		sorted_list.push_front(sorted_list.back());
 		sorted_list.pop_back();
 	}
 
