@@ -18,8 +18,8 @@
 # include <vector>
 # include <ctime>
 
-#define BWhite	"\033[1;37m"
-#define BGray	"\033[1;38;5;250m"
+# define BWhite	"\033[1;37m"
+# define BGray	"\033[1;38;5;250m"
 
 typedef std::vector<std::pair<size_t, size_t> > pairVec;
 typedef std::deque<std::pair<size_t, size_t> > pairDeq;

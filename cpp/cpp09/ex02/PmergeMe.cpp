@@ -32,7 +32,41 @@ PmergeMe::~PmergeMe() {
 
 
 // Static Functions :
-static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list, bool recursive = true) {
+static bool DequeIsSorted(std::deque<size_t>& list) {
+	if (list.size() <= 1) {
+		return true;
+	}
+	std::deque<size_t>::iterator it = list.begin();
+	size_t prev = *it;
+	++it;
+	while (it != list.end()) {
+		if (*it < prev) {
+			return false;
+		}
+		prev = *it;
+		++it;
+	}
+	return true;
+}
+
+static bool DequeIsSorted(std::deque<size_t>& list) {
+	if (list.size() <= 1) {
+		return true;
+	}
+	std::deque<size_t>::iterator it = list.begin();
+	size_t prev = *it;
+	++it;
+	while (it != list.end()) {
+		if (*it < prev) {
+			return false;
+		}
+		prev = *it;
+		++it;
+	}
+	return true;
+}
+
+static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list, bool recursive = false) {
 	std::deque<size_t> sorted_list;
 	pairDeq pairs; // Deque container of pairs
 	bool odd = (bool)(list.size() % 2);
@@ -44,6 +78,7 @@ static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list, bool 
 		sorted_list.push_back(list.back());
 		list.pop_back();
 	}
+	
 	for (std::deque<size_t>::iterator it = list.begin(); it != list.end(); it++, insert = !insert) { // pairing
 		if (insert) {
 			std::pair<size_t, size_t> pair;
@@ -56,32 +91,23 @@ static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list, bool 
 			std::cout << "pair : " << pairs.back().first << " " << pairs.back().second << std::endl;
 		}
 	}
-	if (recursive) { // Redo the merge-insertion sort with the lowest of each pairs, then again with the highest
-		std::deque<size_t> lowest_list, highest_list;
+
+	if (!recursive) { // Redo the merge-insertion sort with the lowest of each pairs, then again with the highest
+		std::deque<size_t> highest_list;
 		for (pairDeq::iterator it = pairs.begin(); it != pairs.end(); it++) {
 			highest_list.push_back(it->first);
-			lowest_list.push_back(it->second);
 		}
-		highest_list = DequeMergeInsertionSort(highest_list, false);
-		lowest_list = DequeMergeInsertionSort(lowest_list, false);
-		
-		// wikipedia
-		// sorted_list = binary_search(...);
+		// recursive sort highest numbers
 
-		PmergeMe::PrintDeque(lowest_list); // to remove
+		// wikipedia
+		// sorted_list = binary_search(highest_list, lowest_list);
+
 		PmergeMe::PrintDeque(highest_list); // to remove
 
 		return sorted_list;
 	}
 
-	for (pairDeq::iterator it = pairs.begin(); it != pairs.end(); it++) { // If not recursive, pairs should be sorted ascending
-		sorted_list.push_front(it->first);
-		sorted_list.push_front(it->second);
-	}
-	if (odd) { // If not recursive, the odd number should be in first instead of last
-		sorted_list.push_front(sorted_list.back());
-		sorted_list.pop_back();
-	}
+	// sort highest numbers
 
 	return sorted_list;
 }
