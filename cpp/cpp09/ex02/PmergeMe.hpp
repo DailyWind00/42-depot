@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:34:03 by mgallais          #+#    #+#             */
-/*   Updated: 2024/09/17 15:08:38 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:51:51 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 #define BWhite	"\033[1;37m"
 #define BGray	"\033[1;38;5;250m"
+
+typedef std::vector<std::pair<size_t, size_t> > pairVec;
+typedef std::deque<std::pair<size_t, size_t> > pairDeq;
 
 class PmergeMe {
 	public :

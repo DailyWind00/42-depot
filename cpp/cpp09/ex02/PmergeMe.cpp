@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:34:06 by mgallais          #+#    #+#             */
-/*   Updated: 2024/09/17 15:43:35 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:08:36 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,37 @@ PmergeMe::~PmergeMe() {
 
 // Static Functions :
 static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list) {
+	std::deque<size_t>::iterator it;
+	std::deque<size_t> sorted_list;
+	pairDeq pairs; // Deque container of pairs
+	bool insert = true;
 	
-	return list;
+	if (list.size() % 2) { // Odd number of elements handling
+		sorted_list.push_back(list.back());
+		list.pop_back();
+	}
+	for (it = list.begin(); it != list.end(); it++) {
+		if (insert) {
+			std::pair<size_t, size_t> pair;
+			pair.first = *it;
+			pairs.push_back(pair);
+		} else {
+			pairs.back().second = *it;
+			if (pairs.back().first > pairs.back().second)
+				std::swap(pairs.back().first, pairs.back().second);
+			// std::cout << "pair : " << pairs.back().first << " " << pairs.back().second << std::endl;
+		}
+		insert = !insert;
+	}
+
+
+	return sorted_list;
 }
 
-static std::vector<size_t> VectorMergeInsertionSort(std::vector<size_t> list) {
-	
-	return list;
-}
+// static std::vector<size_t> VectorMergeInsertionSort(std::vector<size_t> list) {
+// 	// todo
+// 	return sorted_list;
+// }
 // ---
 
 
@@ -84,7 +107,7 @@ const std::deque<size_t> PmergeMe::DequeMergeInsert(std::deque<size_t> &list, do
 
 const std::vector<size_t> PmergeMe::VectorMergeInsert(std::vector<size_t> &list, double &time) {
 	std::clock_t start = std::clock();
-	list = VectorMergeInsertionSort(list);
+	// list = VectorMergeInsertionSort(list);
 	std::clock_t end = std::clock();
 	time = (end - start) * 1000000 / CLOCKS_PER_SEC;
 	return list;
