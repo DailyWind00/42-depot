@@ -36,8 +36,8 @@ class PmergeMe {
 		static std::deque<size_t>	ConvertDeque(char **args);
 		static std::vector<size_t>	ConvertVector(char **args);
 		
-		static const std::deque<size_t>		DequeMergeInsert(std::deque<size_t> &list, double &time);
-		static const std::vector<size_t>	VectorMergeInsert(std::vector<size_t> &list, double &time);
+		static const std::deque<size_t>		DequeMergeInsert(std::deque<size_t> list, double &time);
+		static const std::vector<size_t>	VectorMergeInsert(std::vector<size_t> list, double &time);
 		
 		static void PrintDeque(const std::deque<size_t> &list);
 		static void PrintVector(const std::vector<size_t> &list);

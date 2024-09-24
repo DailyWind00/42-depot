@@ -35,45 +35,53 @@ PmergeMe::~PmergeMe() {
 static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list, bool recursive = true) {
 	std::deque<size_t> sorted_list;
 	pairDeq pairs; // Deque container of pairs
+	bool odd = (bool)(list.size() % 2);
 	bool insert = true;
-	
-	if (list.size() % 2) { // Odd number of elements handling
+	std::cout << std::endl;
+
+	if (odd) { // Odd number of elements handling
 		sorted_list.push_back(list.back());
 		list.pop_back();
 	}
 	for (std::deque<size_t>::iterator it = list.begin(); it != list.end(); it++, insert = !insert) { // pairing
 		if (insert) {
 			std::pair<size_t, size_t> pair;
-			pair.first = *it;
+			pair.first = *it;	
 			pairs.push_back(pair);
 		} else {
 			pairs.back().second = *it;
-			if (pairs.back().first > pairs.back().second) // pair(lowest, highest)
+			if (pairs.back().first < pairs.back().second) // pair(highest, lowest)
 				std::swap(pairs.back().first, pairs.back().second);
-			// std::cout << "pair : " << pairs.back().first << " " << pairs.back().second << std::endl;
+			std::cout << "pair : " << pairs.back().first << " " << pairs.back().second << std::endl;
 		}
 	}
 	if (recursive) { // Redo the merge-insertion sort with the lowest of each pairs, then again with the highest
 		std::deque<size_t> lowest_list, highest_list;
 		for (pairDeq::iterator it = pairs.begin(); it != pairs.end(); it++) {
-			lowest_list.push_back(it->first);
-			highest_list.push_back(it->second);
+			highest_list.push_back(it->first);
+			lowest_list.push_back(it->second);
 		}
-		pairs.clear();
-		lowest_list = DequeMergeInsertionSort(lowest_list, false);
 		highest_list = DequeMergeInsertionSort(highest_list, false);
+		lowest_list = DequeMergeInsertionSort(lowest_list, false);
 		
 		// wikipedia
-		// sorted_list = binary_search();
+		// sorted_list = binary_search(...);
+
+		PmergeMe::PrintDeque(lowest_list);
+		PmergeMe::PrintDeque(highest_list);
 
 		return sorted_list;
 	}
 
-	for (pairDeq::iterator it = pairs.begin(); it != pairs.end(); it++) { // If not recursive, pairs should be sorted
-		sorted_list.push_back(it->first);
-		sorted_list.push_back(it->second);
+	for (pairDeq::iterator it = pairs.begin(); it != pairs.end(); it++) { // If not recursive, pairs should be sorted ascending
+		sorted_list.push_front(it->first);
+		sorted_list.push_front(it->second);
 	}
-	pairs.clear();
+	if (odd) {
+		sorted_list.push_front(sorted_list.back()); // If not recursive, the odd number should be in first instead of last
+		sorted_list.pop_back();
+	}
+
 	return sorted_list;
 }
 
@@ -114,7 +122,7 @@ std::vector<size_t> PmergeMe::ConvertVector(char **args) {
 	return list;
 }
 
-const std::deque<size_t> PmergeMe::DequeMergeInsert(std::deque<size_t> &list, double &time) {
+const std::deque<size_t> PmergeMe::DequeMergeInsert(std::deque<size_t> list, double &time) {
 	std::clock_t start = std::clock();
 	list = DequeMergeInsertionSort(list);
 	std::clock_t end = std::clock();
@@ -122,7 +130,7 @@ const std::deque<size_t> PmergeMe::DequeMergeInsert(std::deque<size_t> &list, do
 	return list;
 }
 
-const std::vector<size_t> PmergeMe::VectorMergeInsert(std::vector<size_t> &list, double &time) {
+const std::vector<size_t> PmergeMe::VectorMergeInsert(std::vector<size_t> list, double &time) {
 	std::clock_t start = std::clock();
 	// list = VectorMergeInsertionSort(list, true);
 	std::clock_t end = std::clock();
