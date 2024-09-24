@@ -32,8 +32,7 @@ PmergeMe::~PmergeMe() {
 
 
 // Static Functions :
-static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list) {
-	std::deque<size_t>::iterator it;
+static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list, bool recursive = true) {
 	std::deque<size_t> sorted_list;
 	pairDeq pairs; // Deque container of pairs
 	bool insert = true;
@@ -42,25 +41,43 @@ static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list) {
 		sorted_list.push_back(list.back());
 		list.pop_back();
 	}
-	for (it = list.begin(); it != list.end(); it++) {
+	for (std::deque<size_t>::iterator it = list.begin(); it != list.end(); it++, insert = !insert) { // pairing
 		if (insert) {
 			std::pair<size_t, size_t> pair;
 			pair.first = *it;
 			pairs.push_back(pair);
 		} else {
 			pairs.back().second = *it;
-			if (pairs.back().first > pairs.back().second)
+			if (pairs.back().first > pairs.back().second) // pair(lowest, highest)
 				std::swap(pairs.back().first, pairs.back().second);
 			// std::cout << "pair : " << pairs.back().first << " " << pairs.back().second << std::endl;
 		}
-		insert = !insert;
+	}
+	if (recursive) { // Redo the merge-insertion sort with the lowest of each pairs, then again with the highest
+		std::deque<size_t> lowest_list, highest_list;
+		for (pairDeq::iterator it = pairs.begin(); it != pairs.end(); it++) {
+			lowest_list.push_back(it->first);
+			highest_list.push_back(it->second);
+		}
+		pairs.clear();
+		lowest_list = DequeMergeInsertionSort(lowest_list, false);
+		highest_list = DequeMergeInsertionSort(highest_list, false);
+		
+		// wikipedia
+		// sorted_list = binary_search();
+
+		return sorted_list;
 	}
 
-
+	for (pairDeq::iterator it = pairs.begin(); it != pairs.end(); it++) { // If not recursive, pairs should be sorted
+		sorted_list.push_back(it->first);
+		sorted_list.push_back(it->second);
+	}
+	pairs.clear();
 	return sorted_list;
 }
 
-// static std::vector<size_t> VectorMergeInsertionSort(std::vector<size_t> list) {
+// static std::vector<size_t> VectorMergeInsertionSort(std::vector<size_t> list, bool recursive = true) {
 // 	// todo
 // 	return sorted_list;
 // }
@@ -107,7 +124,7 @@ const std::deque<size_t> PmergeMe::DequeMergeInsert(std::deque<size_t> &list, do
 
 const std::vector<size_t> PmergeMe::VectorMergeInsert(std::vector<size_t> &list, double &time) {
 	std::clock_t start = std::clock();
-	// list = VectorMergeInsertionSort(list);
+	// list = VectorMergeInsertionSort(list, true);
 	std::clock_t end = std::clock();
 	time = (end - start) * 1000000 / CLOCKS_PER_SEC;
 	return list;
