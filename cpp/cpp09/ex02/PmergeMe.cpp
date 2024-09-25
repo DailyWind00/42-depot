@@ -6,7 +6,7 @@
 /*   By: mgallais <mgallais@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:34:06 by mgallais          #+#    #+#             */
-/*   Updated: 2024/09/25 10:48:31 by mgallais         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:49:01 by mgallais         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ PmergeMe::~PmergeMe() {
 
 
 // Static Functions :
-static bool DequeIsSorted(std::deque<size_t>& list) {
+bool PmergeMe::DequeIsSorted(std::deque<size_t>& list) {
 	if (list.size() <= 1) {
 		return true;
 	}
@@ -49,98 +49,99 @@ static bool DequeIsSorted(std::deque<size_t>& list) {
 	return true;
 }
 
-// static bool VectorIsSorted(std::vector<size_t>& list) {
-// 	if (list.size() <= 1) {
-// 		return true;
-// 	}
-// 	std::vector<size_t>::iterator it = list.begin();
-// 	size_t prev = *it;
-// 	++it;
-// 	while (it != list.end()) {
-// 		if (*it < prev) {
-// 			return false;
-// 		}
-// 		prev = *it;
-// 		++it;
-// 	}
-// 	return true;
-// }
+bool PmergeMe::VectorIsSorted(std::vector<size_t>& list) {
+	if (list.size() <= 1) {
+		return true;
+	}
+	std::vector<size_t>::iterator it = list.begin();
+	size_t prev = *it;
+	++it;
+	while (it != list.end()) {
+		if (*it < prev) {
+			return false;
+		}
+		prev = *it;
+		++it;
+	}
+	return true;
+}
 
-static std::deque<size_t> DequeMergeInsertionSort(std::deque<size_t> list) {
+std::deque<size_t> PmergeMe::DequeSort(std::deque<size_t> list) {
 	if (DequeIsSorted(list))
 		return list;
 
 	std::deque<size_t> sorted_list;
-	pairDeq pairs; // Deque container of pairs
-	bool odd = (bool)(list.size() % 2);
-	bool insert = true;
+	
+	sorted_list.push_front(list.front());
+	list.pop_front();
 
-	if (DEBUG)
-		std::cout << std::endl;
-
-	if (odd) { // Odd number of elements handling
-		sorted_list.push_back(list.back());
-		list.pop_back();
-	}
-
-	for (std::deque<size_t>::iterator it = list.begin(); it != list.end(); it++, insert = !insert) { // pairing
-		if (insert) {
-			std::pair<size_t, size_t> pair;
-			pair.first = *it;	
-			pairs.push_back(pair);
-		} else {
-			pairs.back().second = *it;
-			if (pairs.back().first < pairs.back().second) // pair(highest, lowest)
-				std::swap(pairs.back().first, pairs.back().second);
-		}
-	}
-
-	std::deque<size_t> highest_list, lowest_list;
-	for (pairDeq::iterator it = pairs.begin(); it != pairs.end(); it++) {
-        highest_list.push_back(it->first);
-		lowest_list.push_back(it->second);
-	}
-	if (DEBUG)
-		PmergeMe::PrintDeque(highest_list);
-
- 	sorted_list = DequeMergeInsertionSort(highest_list);
-
-	if (DEBUG)
-		PmergeMe::PrintDeque(sorted_list);
-
-	// jacobstall
-
-	for (pairDeq::iterator it = pairs.begin(); it != pairs.end(); it++) {  // Binary sort
+	for (std::deque<size_t>::iterator it = list.begin(); it != list.end(); it++) { // Binary sort
 		long left = 0;
-		long right = sorted_list.size();
+		long right = sorted_list.size() - 1;
 		bool doublon = false;
-
-        while (left < right) {
-			long mid = (left + right) / 2; // automatic floor
-			std::cout << mid << std::endl;
-
-			if (sorted_list[mid] < it->second)
-				left = mid + 1;
-			else if (sorted_list[mid] > it->second)
-				right = mid - 1;
-			else {
+		
+		while (left <= right) {
+			long mid = (left + right) / 2; // floor
+					if (sorted_list[mid] == *it) {
 				doublon = true;
 				break ;
 			}
+			else if (sorted_list[mid] < *it)
+				left = mid + 1;
+			else if (sorted_list[mid] > *it)
+				right = mid - 1;
 		}
-		if (!doublon) // Doublon are ignored
-			sorted_list.insert(sorted_list.begin() += right, it->second);
-		if (DEBUG)
-			PmergeMe::PrintDeque(sorted_list);
+	
+		if (!doublon) { // Doublon are ignored
+			std::deque<size_t>::iterator insert_it = sorted_list.begin();
+			for (long i = 0; i < left; i++) {
+				insert_it++;
+			}
+			sorted_list.insert(insert_it, *it);
+		}
 	}
 
 	return sorted_list;
 }
 
-// static std::vector<size_t> VectorMergeInsertionSort(std::vector<size_t> list, bool recursive = true) {
-// 	// todo
-// 	return sorted_list;
-// }
+std::vector<size_t> PmergeMe::VectorSort(std::vector<size_t> list) {
+	if (VectorIsSorted(list))
+		return list;
+
+	std::vector<size_t> sorted_list;
+
+	sorted_list.push_back(list.front());
+	list.erase(list.begin());
+
+	for (std::vector<size_t>::iterator it = list.begin(); it != list.end(); it++) { // Binary sort
+		long left = 0;
+		long right = sorted_list.size() - 1;
+		bool doublon = false;
+
+		while (left <= right) {
+			long mid = (left + right) / 2; // floor
+
+			if (sorted_list[mid] == *it) {
+				doublon = true;
+				break;
+			}
+			else if (sorted_list[mid] < *it)
+				left = mid + 1;
+			else if (sorted_list[mid] > *it)
+				right = mid - 1;
+		}
+
+		if (!doublon) { // Doublon are ignored
+			std::vector<size_t>::iterator insert_it = sorted_list.begin();
+			for (long i = 0; i < left; i++) {
+				insert_it++;
+			}
+			sorted_list.insert(insert_it, *it);
+		}
+	}
+
+	return sorted_list;
+}
 // ---
 
 
@@ -176,7 +177,7 @@ std::vector<size_t> PmergeMe::ConvertVector(char **args) {
 
 const std::deque<size_t> PmergeMe::DequeMergeInsert(std::deque<size_t> list, double &time) {
 	std::clock_t start = std::clock();
-	list = DequeMergeInsertionSort(list);
+	list = DequeSort(list);
 	std::clock_t end = std::clock();
 	time = (end - start) * 1000000 / CLOCKS_PER_SEC;
 	return list;
@@ -184,7 +185,7 @@ const std::deque<size_t> PmergeMe::DequeMergeInsert(std::deque<size_t> list, dou
 
 const std::vector<size_t> PmergeMe::VectorMergeInsert(std::vector<size_t> list, double &time) {
 	std::clock_t start = std::clock();
-	// list = VectorMergeInsertionSort(list, true);
+	list = VectorSort(list);
 	std::clock_t end = std::clock();
 	time = (end - start) * 1000000 / CLOCKS_PER_SEC;
 	return list;

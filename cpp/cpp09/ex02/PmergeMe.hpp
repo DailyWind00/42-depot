@@ -45,5 +45,10 @@ class PmergeMe {
 		
 		static void PrintDeque(const std::deque<size_t> &list);
 		static void PrintVector(const std::vector<size_t> &list);
-		
+
+		static bool DequeIsSorted(std::deque<size_t>& list);
+		static bool VectorIsSorted(std::vector<size_t>& list);
+
+		static std::deque<size_t> DequeSort(std::deque<size_t> list);
+		static std::vector<size_t> VectorSort(std::vector<size_t> list);
 };
