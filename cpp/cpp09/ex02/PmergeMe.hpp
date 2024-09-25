@@ -21,6 +21,10 @@
 # define BWhite	"\033[1;37m"
 # define BGray	"\033[1;38;5;250m"
 
+# ifndef DEBUG
+#  define DEBUG 1
+# endif
+
 typedef std::vector<std::pair<size_t, size_t> > pairVec;
 typedef std::deque<std::pair<size_t, size_t> > pairDeq;
 
