@@ -17,7 +17,7 @@
 // HumanB = Pointer to Weapon (because it can be NULL)
 int	main()
 {
-	Weapon		weapon("crude spiked club");
+	Weapon		weapon("huuuge zob");
 	HumanA		humanA("Bob", weapon);
 	HumanB		humanB("Jim");
 
