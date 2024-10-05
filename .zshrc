@@ -135,15 +135,43 @@ alias re="exec zsh"
 # Welcome message
 clear
 echo -n "\033[1;36m"
-echo "+------------------------------------------------------------------------------------------------------+"
-echo "|                                                                                                      |"
-echo -n "|    "; echo -n "\033[1;37m| "; echo -n "\033[0;36m"; echo -n "Welcome,"; echo -n "\033[1;37m"; echo -n " DailyWind"; echo -n "\033[0;36m"; echo -n " to your ZSH shell !"; echo -n "\033[1;36m"; echo "                                                          |"
-echo "|                                                                                                      |"
-echo "+------------------------------------------------------------------------------------------------------+"
+# Get the current terminal width
+term_width=$(( $(tput cols) - 2 ))
+
+# Create the top and bottom borders
+border=$(printf '─%.0s' $(seq 1 $term_width))
+
+# Create the welcome message centered
+message="│ Welcome, DailyWind to your ZSH shell ! │"
+padding=$(( (term_width - ${#message} - 1) / 2 ))
+if [ $((term_width % 2)) -eq 0 ]; then
+    padded_message=$(printf "│\033[1;37m%*s%s%*s  \033[1;36m│" $padding '' "$message" $padding '')
+else
+    padded_message=$(printf "│\033[1;37m%*s%s%*s \033[1;36m│" $padding '' "$message" $padding '')
+fi
+
+# Print the border, message, and border again
+echo "╭$border╮"
+echo "│$(printf '%*s' "$term_width")│"
+echo "$padded_message"
+echo "│$(printf '%*s' "$term_width")│"
+echo "╰$border╯"
+
+#echo "+------------------------------------------------------------------------------------------------------+"
+#echo "|                                                                                                      |"
+#echo -n "|    "; echo -n "\033[1;37m| "; echo -n "\033[0;36m"; echo -n "Welcome,"; echo -n "\033[1;37m"; echo -n " DailyWind"; echo -n "\033[0;36m"; echo -n " to your ZSH shell !"; echo -n "\033[1;36m"; echo "                                                          |"
+#echo "|                                                                                                      |"
+#echo "+------------------------------------------------------------------------------------------------------+"
 echo -n "\033[1;33m"
 echo -n "> Currently in : "
 echo -n "\033[1;31m"
 echo $PWD
+if [ -d ./.git ]; then
+    echo -n "\033[1;92m"
+    echo -n "> Git : "
+    echo -n "\033[1;0m"
+    git pull
+fi
 echo -n "\033[1;0m"
 ls
 # ---
